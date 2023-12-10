@@ -5,7 +5,7 @@ const BOT_TOKEN = '6578601939:AAHeXFA7_4_ZPrQKTTl0bkf1C9Vz5frS-UQ';
 const RAPID_API_KEY = '6f370459a0mshe5afcd3f5b0dab5p16b2a4jsn1d89511e7170';
 
 const bot = new Telegraf(BOT_TOKEN);
-
+bot.telegram.deleteWebhook();
 bot.on('text', (ctx) => {
   // Extract the chat ID dynamically
   const chatId = ctx.chat.id;
