@@ -1,11 +1,10 @@
 const axios = require('axios');
 const { Telegraf } = require('telegraf');
-
+const { Markup } = require('telegraf');
 const BOT_TOKEN = '6817997839:AAHFnQnCFp4lJD-ohot69NJB_xgqKv3saDI';
 const RAPID_API_KEY = '6f370459a0mshe5afcd3f5b0dab5p16b2a4jsn1d89511e7170';
 
 const bot = new Telegraf(BOT_TOKEN);
-bot.telegram.deleteWebhook();
 bot.on('text', (ctx) => {
   // Extract the chat ID dynamically
   const chatId = ctx.chat.id;
@@ -27,8 +26,11 @@ bot.on('text', (ctx) => {
     }
 
     if (code) {
-      // Call the fetchData function with the extracted code and chat ID
-      fetchData(chatId, code);
+      // Send a "Download" button to the user
+      ctx.reply('Note: This can take up 3-4 second.', Markup.inlineKeyboard([
+        Markup.button.callback('Download', `download_${code}`)
+      ]));
+     
     } else {
       // Handle other Instagram URLs or perform a different action
       // You may want to add more conditions or logic here
@@ -37,6 +39,15 @@ bot.on('text', (ctx) => {
     // Handle non-Instagram URLs or perform a different action
     // You may want to add more conditions or logic here
   }
+});
+
+// Handle button click callback
+bot.action(/download_(.+)/, (ctx) => {
+  const code = ctx.match[1];
+  const chatId = ctx.chat.id;
+
+  // Call the fetchData function with the extracted code and chat ID
+  fetchData(chatId, code);
 });
 
 function extractCode(url, keyword) {
