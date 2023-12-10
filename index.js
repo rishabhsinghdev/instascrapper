@@ -1,7 +1,7 @@
 const axios = require('axios');
 const { Telegraf } = require('telegraf');
 
-const BOT_TOKEN = '6578601939:AAHeXFA7_4_ZPrQKTTl0bkf1C9Vz5frS-UQ';
+const BOT_TOKEN = '6817997839:AAHFnQnCFp4lJD-ohot69NJB_xgqKv3saDI';
 const RAPID_API_KEY = '6f370459a0mshe5afcd3f5b0dab5p16b2a4jsn1d89511e7170';
 
 const bot = new Telegraf(BOT_TOKEN);
