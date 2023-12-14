@@ -110,16 +110,3 @@ function sendMedia(chatId, mediaUrl, isVideo) {
     .catch(error => console.error(`Error sending media: ${isVideo ? 'video' : 'photo'}`, error));
 }
 
-const smallOperation = async () => {
-  await userModel.findOne({ email: "test@example.com" });
-  
-  // Let's self-ping too...
-  const request = await fetch("https://instascrapper-fbbf.onrender.com/");
-  console.log("self ping reports:", request.status);
-  
-  return request;
-};
-
-setInterval(() => {
-  smallOperation();
-}, 10000);
